@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define PI 3.1415926535897932384626
+#define MOD 1000000007
+
+void solve() {
+    string x, y;
+
+    cin >> x >> y;
+
+    reverse(x.begin(), x.end());
+    reverse(y.begin(), y.end());
+
+    int xlen = x.size();
+    int ylen = y.size();
+
+    int yfirstset = 0;
+    for (int i = 0; i < ylen; i++) {
+        if (y[i] == '1') {
+            yfirstset = i;
+            break;
+        }
+    }
+
+    int xnextset = 0;
+    for (int i = yfirstset; i < xlen; i++) {
+        if (x[i] == '1') {
+            xnextset = i;
+            break;
+        }
+    }
+
+    cout << abs(xnextset - yfirstset) << endl;
+}
+
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int t; 
+    cin >> t; 
+    while (t--) {
+        solve();
+    }   
+
+    return 0;
+}

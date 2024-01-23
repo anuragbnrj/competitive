@@ -1,0 +1,91 @@
+// Problem Link: https://www.spoj.com/problems/HS08PAUL/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define PI 3.1415926535897932384626
+#define MOD 1000000007
+
+int len = 10000007;
+vector<int> spf(len);
+vector<bool> isOfForm(len, false);
+vector<int> primeCounts(len, 0);
+
+void smallestPrimeFactors() {
+    int n = len - 1;
+
+    // spf[i] will store the smallest prime factor of i
+    // if spf[i] == i, then i is a prime number
+    // vector<int> spf(n + 1); 
+
+    // fills the vector with values starting from 0. Eg: 0, 1, 2, 3, ...
+    iota(spf.begin(), spf.end(), 0);
+
+    for (long long i = 2; i*i <= n; i++) { // O(N log log N)
+        if (spf[i] == i) {
+            for (long long j = i*i ; j <= n; j = j + i) {
+                if (spf[j] == j) {
+                    spf[j] = i; 
+                }
+            }
+        }
+    }
+
+}
+
+void precompute() {
+    smallestPrimeFactors();
+
+    for(long long x = 1; x*x <= len; x++) {
+        int t1 = x * x;
+        for (long long y = 1; y*y*y*y <= len - t1; y++) {
+            int t2 = y * y;
+            t2 = t2 * t2;
+
+            if (spf[t1 + t2] == (t1 + t2)) {
+                isOfForm[t1 + t2] = true;
+            }
+        }
+    }
+
+    int ctr = 0;
+    for (int i = 0; i < len; i++) {
+        if (isOfForm[i]) {
+            ctr++;
+        }
+
+        primeCounts[i] = ctr;
+    }
+
+
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    cout << primeCounts[n] << endl;
+}  
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    // solve();
+
+    precompute(); 
+
+    int t; 
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}

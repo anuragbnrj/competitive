@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1460126532 source:e:\programs\spoj\trt - treats for the cows\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	<algorithm>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1465235306 source:e:\programs\spoj\ulm09 - dark roads\main.cpp
+	<iostream>
+	<vector>
+	<utility>
+	<algorithm>
+

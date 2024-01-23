@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1462779143 source:e:\programs\spoj\coins - bytelandian gold coins\main.cpp
+	<cstdio>
+	<map>
+

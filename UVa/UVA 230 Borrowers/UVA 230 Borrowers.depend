@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1453556428 source:e:\c programs\uva\uva 230 borrowers\main.cpp
+	<cstdio>
+	<cstring>
+	<string>
+	<iostream>
+	<algorithm>
+	<vector>
+

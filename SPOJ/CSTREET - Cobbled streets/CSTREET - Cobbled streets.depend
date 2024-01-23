@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1465026377 source:e:\programs\spoj\cstreet - cobbled streets\main.cpp
+	<iostream>
+	<vector>
+	<utility>
+	<algorithm>
+

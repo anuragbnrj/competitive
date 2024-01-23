@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1426342549 source:e:\c programs\toandfro - to and fro\main.cpp
+	<iostream>
+	<stdio.h>
+	<string.h>
+

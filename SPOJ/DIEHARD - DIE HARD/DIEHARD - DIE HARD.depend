@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1463912409 source:e:\programs\spoj\diehard - die hard\main.cpp
+	<iostream>
+	<cstdio>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1465287162 source:e:\programs\spoj\pt07y - is it a tree\main.cpp
+	<iostream>
+	<algorithm>
+	<cstdio>
+	<vector>
+

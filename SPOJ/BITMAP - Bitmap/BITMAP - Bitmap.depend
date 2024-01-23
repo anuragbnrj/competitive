@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1463565428 source:e:\programs\spoj\bitmap - bitmap\main.cpp
+	<cstdio>
+	<iostream>
+	<cstring>
+	<queue>
+	<utility>
+

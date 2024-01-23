@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1466953521 source:e:\programs\spoj\hpynos - happy numbers i\main.cpp
+	<cstdio>
+	<iostream>
+

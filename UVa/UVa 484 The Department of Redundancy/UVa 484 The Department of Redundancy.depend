@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1453620318 source:e:\c programs\uva\uva 484 the department of redundancy\main.cpp
+	<iostream>
+	<cstdio>
+	<map>
+	<vector>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1465882944 source:e:\programs\spoj\trika - training for final\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+

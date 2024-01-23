@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1458405647 source:e:\programs\spoj\rpln - negative score\main.cpp
+	<cmath>
+	<cstdio>
+	<vector>
+

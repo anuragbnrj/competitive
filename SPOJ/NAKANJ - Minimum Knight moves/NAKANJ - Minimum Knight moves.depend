@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1457886238 source:e:\programs\spoj\nakanj - minimum knight moves\main.cpp
+	<iostream>
+	<cstdio>
+	<queue>
+	<cstring>
+

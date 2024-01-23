@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1426266688 source:e:\c programs\nsteps - number steps\main.c
+	<stdio.h>
+	<stdlib.h>
+

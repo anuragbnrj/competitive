@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1464805348 source:e:\programs\spoj\stamps-stamps\main.cpp
+	<iostream>
+	<cstdio>
+	<algorithm>
+

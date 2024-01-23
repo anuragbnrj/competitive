@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1462990099 source:e:\programs\uva\11902 - dominator\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+

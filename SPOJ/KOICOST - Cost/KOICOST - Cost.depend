@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1464977191 source:e:\programs\spoj\koicost - cost\main.cpp
+	<iostream>
+	<cstdio>
+	<algorithm>
+	<utility>
+	<vector>
+

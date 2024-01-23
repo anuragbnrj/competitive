@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1465911036 source:e:\programs\spoj\amr11a - magic grid\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+

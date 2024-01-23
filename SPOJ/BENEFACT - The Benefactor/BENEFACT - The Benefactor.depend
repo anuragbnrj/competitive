@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1465232787 source:e:\programs\spoj\benefact - the benefactor\main.cpp
+	<algorithm>
+	<iostream>
+	<cstdio>
+	<vector>
+	<queue>
+

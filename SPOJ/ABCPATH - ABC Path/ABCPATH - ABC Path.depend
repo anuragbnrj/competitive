@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1458150276 source:e:\programs\spoj\abcpath - abc path\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+

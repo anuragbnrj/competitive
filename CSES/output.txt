@@ -1,1 +1,2 @@
-NO SOLUTION
+4
+1 3 5 1

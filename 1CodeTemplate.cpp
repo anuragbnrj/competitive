@@ -1,18 +1,19 @@
-// Problem Link: 
+// Problem Link:
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define PI 3.1415926535897932384626
-#define MOD 1000000007
-#define ll long long
+#define endl '\n'
+typedef long long ll;
+
+long double PI = acos(-1.0);
+ll MOD = 1e9 + 7;
 
 void solve() {
     int n;
     cin >> n;
-
-}  
+}
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -23,10 +24,8 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    // solve(); 
-
-    int t; 
-    cin >> t;
+    int t = 1;
+    // cin >> t;
     while (t--) {
         solve();
     }

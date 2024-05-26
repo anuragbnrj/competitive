@@ -1,145 +1,69 @@
 #include <bits/stdc++.h>
 
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace __gnu_pbds;
+
 using namespace std;
 
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
 
-struct Node {
-	Node *links[10];
-	bool flag = false;
+typedef long long ll;
 
-	//checks if the reference trie is present or not
-	bool containKey(char ch) {
-		return (links[ch - '0'] != NULL);
-	}
-	//creating reference trie
-	void put(char ch, Node *node) {
-		links[ch - '0'] = node;
-	}
-	//to get the next node for traversal
-	Node *get(char ch) {
-		return links[ch - '0'];
-	}
-	//setting flag to true at the end of the word
-	void setEnd() {
-		flag = true;
-	}
-	//checking if the word is completed or not
-	bool isEnd() {
-		return flag;
-	}
-};
+template <class T>
+using oset = tree<T, null_type, greater_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-class Trie {
-private:
-	Node *root;
+class Solution {
 public:
+    int minimumAddedInteger(vector<int> &nums1, vector<int> &nums2) {
+        int n1 = nums1.size();
+        int n2 = nums2.size();
 
-	Trie() {
-		//creating new obejct
-		root = new Node();
-	}
-
-	void insert(string word) {
-		//initializing dummy node pointing to root initially
-		Node *node = root;
-		for (int i = 0; i < word.size(); i++) {
-			if (!node->containKey(word[i])) {
-				node->put(word[i], new Node());
-			}
-			//moves to reference trie
-			node = node->get(word[i]);
-		}
-		node->setEnd();
-	}
-
-	bool search(string word) {
-		Node *node = root;
-		for (int i = 0; i < word.size(); i++) {
-			if (!node->containKey(word[i])) {
-				return false;
-			}
-			node = node->get(word[i]);
-		}
-		return node->isEnd();
-	}
-
-	bool startsWith(string prefix) {
-		Node *node = root;
-		for (int i = 0; i < prefix.size(); i++) {
-			if (!node->containKey(prefix[i])) {
-				return false;
-			}
-			node = node->get(prefix[i]);
-		}
-		return true;
-	}
-
-    void fillLexicographically(Node *node, string curr, vector<string> &res)  {
-        for (char ch = '0'; ch <= '9'; ch++) {
-            if (node->containKey(ch)) {
-                Node *temp = node->get(ch);
-                if (temp->isEnd()) {
-                    res.push_back(curr + ch);
-                }
-                fillLexicographically(temp, curr + ch, res);
-            }
+        unordered_map<int, int> freq2;
+        for (int i = 0; i < n2; i++) {
+            freq2[nums2[i]]++;
         }
-	}
 
-    vector<int> getLexSorted() {
-        vector<string> arr;
-        Node *node = root;
-        fillLexicographically(root, "", arr);
+        int res = 0;
+        for (int x = -5; x <= 5; x++) {
+            unordered_map<int, int> freq1;
 
-        vector<int> res;
-        for (int i = 0; i < arr.size(); i++) {
-            res.push_back(stoi(arr[i]));
-            // cout << arr[i] << endl;
+            for (int i = 0; i < n1; i++) {
+                freq1[nums1[i] + x]++;
+            }
+
+            int diff = 0;
+            for (auto el : freq1) {
+                int num = el.first;
+                int freq = el.second;
+
+                diff += abs(num - freq2[num]);
+            }
+
+            if (diff == 2) {
+                res = x;
+                break;
+            }
         }
 
         return res;
     }
 };
 
-class Solution {
-public:
-    vector<int> lexicalOrder(int n) {
-        Trie trie;
-        for (int i = 1; i <= n; i++) {
-            trie.insert(to_string(i));
-        }
-
-        cout << "Contains 99? " << trie.search("99") << endl;
-
-        return trie.getLexSorted();
-    }
-}; 
-
-int main() {
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
-// #endif
-    // ios_base::sync_with_stdio(0);
-    // cin.tie(0);
-    // cout.tie(0);
-
-    // int t; 
-    // cin >> t;
-    // while (t--) {
-    //     solve();
-    // }
-
+int main(void) {
     Solution obj;
 
-    vector<int> res = obj.lexicalOrder(13);
+    int n = 10;
 
-    for (int el : res) {
-        cout << el << ", \t";
+    for (int i = 0; i <= n; i++) {
+        int xr = (n ^ i);
+        int sum = (n + i);
+        if (xr == sum) {
+            cout << "n: " << n << ", i: " << i << ", XOR: " << xr << ", SUM: " << sum << endl;
+        }
     }
-    cout << endl;
 
     return 0;
 }

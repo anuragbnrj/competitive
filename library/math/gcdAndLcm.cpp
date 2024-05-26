@@ -7,7 +7,7 @@ using namespace std;
 
 typedef long long ll;
 
-// GCD / HCF
+// GCD / HCF (O(log(min(a, b))))
 int gcdRec(int a, int b) {
     if (b == 0)
         return a;
@@ -24,6 +24,21 @@ int gcdInt(int a, int b) {
         a %= b;
         swap(a, b);
     }
+    return a;
+}
+
+int gcdIterative(int a, int b) {
+    // To make sure that a is GREATER than b
+    if (a < b) {
+        swap(a, b);
+    }
+
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+
     return a;
 }
 

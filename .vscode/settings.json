@@ -17,6 +17,9 @@
         "span": "cpp",
         "stacktrace": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "tuple": "cpp",
+        "random": "cpp",
+        "new": "cpp"
     }
 }

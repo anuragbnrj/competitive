@@ -15,6 +15,7 @@ private:
 
 public:
     DisjointSet(int n) {
+        // Done to handle cases for 1-based indexing as well
         rank.resize(n + 1, 0);
         parent.resize(n + 1);
         size.resize(n + 1, 1);
@@ -39,7 +40,7 @@ public:
         }
 
         if (rank[pU] == rank[pV]) {
-            pU = pV;
+            parent[pU] = pV;
             rank[pV]++;
         } else if (rank[pU] <= rank[pV]) {
             parent[pU] = pV;

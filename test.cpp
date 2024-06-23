@@ -17,53 +17,58 @@ using oset = tree<T, null_type, greater_equal<T>, rb_tree_tag, tree_order_statis
 
 class Solution {
 public:
-    int minimumAddedInteger(vector<int> &nums1, vector<int> &nums2) {
-        int n1 = nums1.size();
-        int n2 = nums2.size();
-
-        unordered_map<int, int> freq2;
-        for (int i = 0; i < n2; i++) {
-            freq2[nums2[i]]++;
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+        int n = hand.size();
+        if (n % groupSize != 0) {
+            return false;
         }
 
-        int res = 0;
-        for (int x = -5; x <= 5; x++) {
-            unordered_map<int, int> freq1;
+        sort(hand.begin(), hand.end());
+        reverse(hand.begin(), hand.end());
 
-            for (int i = 0; i < n1; i++) {
-                freq1[nums1[i] + x]++;
-            }
+        multiset<pair<int, int>> top;
+        for (int i = 0; i < n; i++) {
+            int el = hand[i];
 
-            int diff = 0;
-            for (auto el : freq1) {
-                int num = el.first;
-                int freq = el.second;
-
-                diff += abs(num - freq2[num]);
-            }
-
-            if (diff == 2) {
-                res = x;
-                break;
+            auto it = top.upper_bound({el, -1});
+            if (it == top.end() || it->first != (el + 1)) {
+                if (groupSize > 1) {
+                    top.insert({el, groupSize});
+                }  
+            } else {
+                if (it->second >= 3) {
+                    int order = it->second;
+                    top.erase(it);
+                    top.insert({el, order - 1});
+                } else {
+                    top.erase(it);
+                }
             }
         }
 
-        return res;
+        // for (auto el : top) {
+        //     cout << "{" << el.first << ", " << el.second << "} ";
+        // }
+        // cout << endl;
+
+        if (top.size() > 0) {
+            cout << top.size() << endl;
+            return false;
+        }
+ 
+        return true;
     }
 };
 
 int main(void) {
     Solution obj;
 
-    int n = 10;
+    vector<int> arr = {1,1,2,2,3,3};
+    int groupSize = 3;
 
-    for (int i = 0; i <= n; i++) {
-        int xr = (n ^ i);
-        int sum = (n + i);
-        if (xr == sum) {
-            cout << "n: " << n << ", i: " << i << ", XOR: " << xr << ", SUM: " << sum << endl;
-        }
-    }
+    bool res  = obj.isNStraightHand(arr, groupSize);
+
+    cout << res << endl;
 
     return 0;
 }

@@ -1,73 +1,78 @@
-// Problem Link: 
+// Problem Link:
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define endl '\n'
-typedef long long ll;
+using ll = long long;
 
 long double PI = acos(-1.0);
-ll mod = 1e9 + 7;
+ll MOD = 1e9 + 7;
+ll INFL = 1e18;
+int INF = 1e9;
 
-vector<vector<int>> graph;
-vector<int> color;
-vector<int> parent;
 
-bool cycleExists = false;
-
-vector<int> dfs(int node, int prev) {
-    // parent[node] = prev;
-    color[node] = 2;
-
-    int cyclesize = 0;
-    for (int neigh : graph[node]) {
-        if (color[neigh] == 1) {
-            dfs(neigh, node);
-        } else if (color[neigh] == 2 && neigh != prev) {
-            // int curr = node;
-            // while (curr != neigh) {
-            //     cyclesize++;
-            //     curr = parent[curr];
-            // }
-            // cyclesize++;
-
-            // if (cyclesize >= 4) {
-            //     cycleExists = true;
-            // }
-        } 
-    }
-
-    color[node] = 3;
-}
+//---- Debugger ---- //
+#define debarr(a,n) cout<<#a<<" : ";for(int i=0;i<n;i++) cerr<<a[i]<<" "; cerr<<endl;
+#define debmat(mat,row,col) cout<<#mat<<" :\n";for(int i=0;i<row;i++) {for(int j=0;j<col;j++) cerr<<mat[i][j]<<" ";cerr<<endl;}
+#define pr(...) dbs(#__VA_ARGS__, __VA_ARGS__)
+template <class S, class T>ostream& operator <<(ostream& os, const pair<S, T>& p) {return os << "(" << p.first << ", " << p.second << ")";}
+template <class T>ostream& operator <<(ostream& os, const vector<T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class T>ostream& operator <<(ostream& os, const unordered_set<T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class S, class T>ostream& operator <<(ostream& os, const unordered_map<S, T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class T>ostream& operator <<(ostream& os, const set<T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class T>ostream& operator <<(ostream& os, const multiset<T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class S, class T>ostream& operator <<(ostream& os, const map<S, T>& p) {os << "[ "; for (auto& it : p) os << it << " "; return os << "]";}
+template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n";}
+template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ","; dbs(str.substr(idx + 1), s...);}
+template <class T> void prc(T a, T b) {cerr << "["; for (T i = a; i != b; ++i) {if (i != a) cerr << ", "; cerr << *i;} cerr << "]\n";}
+//----------------- //
 
 void solve() {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    graph.resize(n + 1);
-    color.assign(n + 1, 1);
-    parent.resize(n + 1, 0);
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        cin >> a >> b;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    vector<int> lis(n, 1);
+    vector<int> countLis(n, 1);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (arr[j] < arr[i]) {
+                lis[i] = lis[j] + 1;
+            }
+        }
 
-        graph[a].push_back(b);
-        graph[b].push_back(a);
+        int ctr = 0;
+        for (int j = 0; j < i; j++) {
+            if (arr[j] < arr[i] && lis[j] == lis[i] - 1) {
+                ctr++;
+            }
+        }
+        countLis[i] = ctr;
     }
 
-    for (int i = 1; i <= n; i++) {
-        if (color[i] == 1) {
-            dfs(i, 0);
+    pr(arr);
+    pr(lis);
+
+    int lengthLis = 1;
+    for (int i = 0; i < n; i++) {
+        lengthLis = max(lengthLis, lis[i]);
+    }
+
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (lis[i] == lengthLis) {
+            ans += countLis[i];
         }
     }
 
-    if (cycleExists) {
-        cout << "YES" << endl;
-    } else {
-        cout << "NO" << endl;
-    }
-}  
+    cout << ans << endl;
+}
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -77,9 +82,9 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    
-    int t = 1; 
-    // cin >> t;
+
+    int t = 1;
+    cin >> t;
     while (t--) {
         solve();
     }

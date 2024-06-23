@@ -34,7 +34,6 @@ struct Trie {
         Node *curr = root;
         
         for (int i = 0; i < s.size(); i++) {
-            curr->prefix++;
             int x = s[i] - 'a';
 
             if (curr->child[x] == nullptr) {
@@ -42,6 +41,7 @@ struct Trie {
             }
 
             curr = curr->child[x];
+            curr->prefix++;
         }
         curr->wend.push_back(s);
     }

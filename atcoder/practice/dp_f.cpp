@@ -32,13 +32,76 @@ template <class T> void prc(T a, T b) {cout << "["; for (T i = a; i != b; ++i) {
 long double PI = acos(-1.0);
 ll MOD = 1e9 + 7;
 ll INFL = 1e18;
-int INF = 1e9; 
+int INF = 1e9;
 
+
+string s, t;
+int n, m;
+int dp[3010][3010];
+int mv[3010][3010];
+
+int rec(int i, int j) {
+    // cout << "i: " << i << ", j: " << j << ", n: " << n << ", m: " << m << endl;
+    if (i == n && j == m) {
+        return 0;
+    }
+
+    if (dp[i][j] != -1) {
+        return dp[i][j];
+    }
+
+    int ans = 0;
+    if (i < n) {
+        if (rec(i + 1, j) >= ans) {
+            ans = rec(i + 1, j);
+            mv[i][j] = 0;
+        }
+    }
+
+    if (j < m) {
+        if (rec(i, j + 1) >= ans) {
+            ans = rec(i, j + 1);
+            mv[i][j] = 1;
+        }
+    }
+    
+    if (i < n && j < m) {
+        if (s[i] == t[j]) {
+            if (rec(i + 1, j + 1) + 1 >= ans) {
+                
+                ans = rec(i + 1, j + 1) + 1;
+                mv[i][j] = 2;
+            }
+        }
+    }
+
+    return dp[i][j] = ans;
+}
+
+void generate(int i, int j) {
+    if (i == n && j == m) {
+        return;
+    }
+
+    if (mv[i][j] == 0) {
+        generate(i + 1, j);
+    } else if (mv[i][j] == 1) {
+        generate(i, j + 1);
+    } else if (mv[i][j] == 2) {
+        cout << s[i];
+        generate(i + 1, j + 1);
+    }
+}
 
 void solve() {
-    int n;
-    cin >> n;
+    cin >> s >> t;
+    n = s.size();
+    m = t.size();
 
+    memset(dp, -1, sizeof(dp));
+    int ans = rec(0, 0);
+    // cout << ans << endl;
+    generate(0, 0);
 }
 
 int main() {

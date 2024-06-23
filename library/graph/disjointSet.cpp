@@ -1,4 +1,4 @@
-// Problem Link: 
+// Problem Link:
 
 #include <bits/stdc++.h>
 
@@ -15,13 +15,14 @@ private:
 
 public:
     DisjointSet(int n) {
-        // Done to handle cases for 1-based indexing as well
-        rank.resize(n + 1, 0);
+        // n + 1 is done to handle cases for 1-based indexing as well
         parent.resize(n + 1);
-        size.resize(n + 1, 1);
         for (int i = 0; i <= n; i++) {
             parent[i] = i;
         }
+
+        rank.resize(n + 1, 0);
+        size.resize(n + 1, 1);
     }
 
     int findUltimateParent(int node) {
@@ -42,10 +43,10 @@ public:
         if (rank[pU] == rank[pV]) {
             parent[pU] = pV;
             rank[pV]++;
-        } else if (rank[pU] <= rank[pV]) {
+        } else if (rank[pU] < rank[pV]) {
             parent[pU] = pV;
         } else {
-           parent[pV] = pU;
+            parent[pV] = pU;
         }
     }
 
@@ -56,10 +57,7 @@ public:
             return;
         }
 
-        if (size[pU] == size[pV]) {
-            parent[pU] = pV;
-            size[pV] += size[pU];
-        } else if (size[pU] < size[pV]) {
+        if (size[pU] <= size[pV]) {
             parent[pU] = pV;
             size[pV] += size[pU];
         } else {
@@ -77,23 +75,21 @@ public:
 
         return parents.size();
     }
-
 };
 
 void solve() {
     int n;
     cin >> n;
-
-}  
+}
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    // solve(); 
+    // solve();
 
-    int t; 
+    int t;
     cin >> t;
     while (t--) {
         solve();
@@ -101,5 +97,3 @@ int main() {
 
     return 0;
 }
-
-
